@@ -59,11 +59,6 @@ var QuoteView = Backbone.View.extend({
 
   render: function() {
     var html = this.template(this.stock);
-    // var html = '<li class="quote">';
-    // html += '<h2>' + this.stock.symbol + '</h2>';
-    // html += '<p>' + this.stock.price + '</p>';
-    // html += '</li>';
-    // console.log(html);
     this.$el.html($(html));
 
     // Enable chained calls
@@ -71,16 +66,49 @@ var QuoteView = Backbone.View.extend({
   }
 });
 
-$(document).ready(function() {
-  var quoteTemplate = _.template($('#tmpl-quote-view').html());
-  var stockQuoteElement = $('.quotes');
-  var stockList = [];
-  stockData.forEach(function(quotePrice){
-    var item = new QuoteView({
-      stock: quotePrice,
-      template: quoteTemplate
-    });
-    stockList.push(item);
-    stockQuoteElement.append(item.render().$el);
-  });
+var ApplicationView = Backbone.View.extend({
+  initialize: function(options) {
+    this.stockData = options.stockData;
+    this.quoteTemplate = _.template($('#tmpl-quote-view').html());
+    this.listElement = this.$('.quotes ');
+    this.stockList = [];
+    this.stockData.forEach(function(quotePrice){
+      var item = new QuoteView({
+        stock: quotePrice,
+        template: this.quoteTemplate
+      });
+      this.stockList.push(item);
+    }, this); // bind `this` so it's available inside forEach
+  },
+  render: function() {
+    this.listElement.empty();
+    this.stockList.forEach(function(item){
+      item.render();
+
+      this.listElement.append(item.$el);
+    }, this);
+    return this; // enable chained calls
+  }
 });
+
+$(document).ready(function() {
+  var application = new ApplicationView({
+    el: $('#application'),
+    stockData: stockData
+  });
+  application.render();
+});
+
+// $(document).ready(function() {
+//   var quoteTemplate = _.template($('#tmpl-quote-view').html());
+//   var stockQuoteElement = $('.quotes');
+//   var stockList = [];
+//   stockData.forEach(function(quotePrice){
+//     var item = new QuoteView({
+//       stock: quotePrice,
+//       template: quoteTemplate
+//     });
+//     stockList.push(item);
+//     stockQuoteElement.append(item.render().$el);
+//   });
+// });
