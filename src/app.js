@@ -59,7 +59,7 @@ var QuoteView = Backbone.View.extend({
 
   render: function() {
     // var html = this.template({stock: this.stock});
-    var html = '<li class="single-quote">';
+    var html = '<li class="quote">';
     html += '<h2>' + this.stock.symbol + '</h2>';
     html += '<p>' + this.stock.price + '</p>';
     html += '</li>';
