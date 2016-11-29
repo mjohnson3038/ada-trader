@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 var QuoteView = Backbone.View.extend({
@@ -7,11 +9,7 @@ var QuoteView = Backbone.View.extend({
   },
 
   render: function() {
-    var html = this.template({html: this.stock});
-    // var html = '<li class="single-quote">';
-    // html += '<h2>' + this.stock.symbol + '</h2>';
-    // html += '<p>' + this.stock.price + '</p>';
-    // html += '</li>';
+    var html = this.template(this.stock);
     this.$el.html($(html));
 
     // Enable chained calls

@@ -2,8 +2,8 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
 
-// import TaskView from 'app/views/quote_view.js';
-// import ApplicationView from 'app/views/application_view.js';
+import QuoteView from 'app/views/quote_view';
+import ApplicationView from 'app/views/application_view.js';
 
 const simulate = function(quote) {
   // Calculate a random price movement
@@ -51,45 +51,45 @@ var stockData = [
   }
 ];
 
-var QuoteView = Backbone.View.extend({
-  initialize: function(options) {
-    this.stock = options.stock;
-    this.template = options.template;
-  },
+// var QuoteView = Backbone.View.extend({
+//   initialize: function(options) {
+//     this.stock = options.stock;
+//     this.template = options.template;
+//   },
+//
+//   render: function() {
+//     var html = this.template(this.stock);
+//     this.$el.html($(html));
+//
+//     // Enable chained calls
+//     return this;
+//   }
+// });
 
-  render: function() {
-    var html = this.template(this.stock);
-    this.$el.html($(html));
-
-    // Enable chained calls
-    return this;
-  }
-});
-
-var ApplicationView = Backbone.View.extend({
-  initialize: function(options) {
-    this.stockData = options.stockData;
-    this.quoteTemplate = _.template($('#tmpl-quote-view').html());
-    this.listElement = this.$('.quotes ');
-    this.stockList = [];
-    this.stockData.forEach(function(quotePrice){
-      var item = new QuoteView({
-        stock: quotePrice,
-        template: this.quoteTemplate
-      });
-      this.stockList.push(item);
-    }, this); // bind `this` so it's available inside forEach
-  },
-  render: function() {
-    this.listElement.empty();
-    this.stockList.forEach(function(item){
-      item.render();
-
-      this.listElement.append(item.$el);
-    }, this);
-    return this; // enable chained calls
-  }
-});
+// var ApplicationView = Backbone.View.extend({
+//   initialize: function(options) {
+//     this.stockData = options.stockData;
+//     this.quoteTemplate = _.template($('#tmpl-quote-view').html());
+//     this.listElement = this.$('.quotes ');
+//     this.stockList = [];
+//     this.stockData.forEach(function(quotePrice){
+//       var item = new QuoteView({
+//         stock: quotePrice,
+//         template: this.quoteTemplate
+//       });
+//       this.stockList.push(item);
+//     }, this); // bind `this` so it's available inside forEach
+//   },
+//   render: function() {
+//     this.listElement.empty();
+//     this.stockList.forEach(function(item){
+//       item.render();
+//
+//       this.listElement.append(item.$el);
+//     }, this);
+//     return this; // enable chained calls
+//   }
+// });
 
 $(document).ready(function() {
   var application = new ApplicationView({
