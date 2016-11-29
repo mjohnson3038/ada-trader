@@ -77,8 +77,8 @@ $(document).ready(function() {
   var stockList = [];
   stockData.forEach(function(quotePrice){
     var item = new QuoteView({
-      stock: quotePrice,
-      template: quoteTemplate
+      stock: quotePrice//,
+      // template: quoteTemplate
     });
     stockList.push(item);
     stockQuoteElement.append(item.render().$el);
