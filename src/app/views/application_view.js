@@ -40,4 +40,6 @@ var ApplicationView = Backbone.View.extend({
   }
 });
 
+
+
 export default ApplicationView;
