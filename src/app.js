@@ -54,7 +54,7 @@ var stockData = [
 var QuoteView = Backbone.View.extend({
   initialize: function(options) {
     this.stock = options.stock;
-    this.template = options.template;
+    // this.template = options.template;
   },
 
   render: function() {
@@ -71,8 +71,63 @@ var QuoteView = Backbone.View.extend({
   }
 });
 
+// var ApplicationView = Backbone.View.extend({
+//   initialize: function(options) {
+//     // Store a the full list of tasks
+//     this.stockData = options.stockData;
+//     this.applicationTemplate = _.template($('#tmpl-quote-view').html());
+//     this.listElement = this.$('.quotes');
+//
+//     this.stockList = [];
+//     this.stockData.forEach(function(quotePrice){
+//       var item = new QuoteView({
+//         stock: quotePrice,
+//         template: this.applicationTemplate
+//       });
+//       this.stockList.push(item);
+//
+//     }, this);
+//   },
+//
+//   render: function() {
+//     this.listElement.empty();
+//
+//     this.stockList.forEach(function(item) {
+//     // Cause the task to render
+//     item.render();
+//
+//     // Add that HTML to our task list
+//     this.listElement.append(item.$el);
+//   }, this);
+//
+//   return this; // enable chained calls
+//   }
+//
+// });
+
+// $(document).ready(function() {
+//   var application = new ApplicationView({
+//     el: $('#application'),
+//     stockData: stockData
+//   });
+//   application.render();
+// });
+
+// $(document).ready(function() {
+//   var quoteTemplate = _.template($('#tmpl-quote-view').html());
+//   var stockQuoteElement = $('.quotes');
+//   var stockList = [];
+//   stockData.forEach(function(quotePrice){
+//     var item = new QuoteView({
+//       stock: quotePrice,
+//       template: quoteTemplate
+//     });
+//     this.stockList.push(item);
+//     stockQuoteElement.append(item.render().$el);
+//   });
+// });
+
 $(document).ready(function() {
-  var quoteTemplate = _.template($('#tmpl-quote-view').html());
   var stockQuoteElement = $('.quotes');
   var stockList = [];
   stockData.forEach(function(quotePrice){
@@ -80,7 +135,5 @@ $(document).ready(function() {
       stock: quotePrice//,
       // template: quoteTemplate
     });
-    stockList.push(item);
-    stockQuoteElement.append(item.render().$el);
   });
 });
