@@ -58,12 +58,12 @@ var QuoteView = Backbone.View.extend({
   },
 
   render: function() {
-    // var html = this.template({stock: this.stock});
-    var html = '<li class="quote">';
-    html += '<h2>' + this.stock.symbol + '</h2>';
-    html += '<p>' + this.stock.price + '</p>';
-    html += '</li>';
-    console.log(html);
+    var html = this.template(this.stock);
+    // var html = '<li class="quote">';
+    // html += '<h2>' + this.stock.symbol + '</h2>';
+    // html += '<p>' + this.stock.price + '</p>';
+    // html += '</li>';
+    // console.log(html);
     this.$el.html($(html));
 
     // Enable chained calls
@@ -77,8 +77,8 @@ $(document).ready(function() {
   var stockList = [];
   stockData.forEach(function(quotePrice){
     var item = new QuoteView({
-      stock: quotePrice//,
-      // template: quoteTemplate
+      stock: quotePrice,
+      template: quoteTemplate
     });
     stockList.push(item);
     stockQuoteElement.append(item.render().$el);
