@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
 
-import TaskView from 'app/views/quote_view.js';
+// import TaskView from 'app/views/quote_view.js';
 // import ApplicationView from 'app/views/application_view.js';
 
 // const simulate = function(quote) {
@@ -54,7 +54,7 @@ var stockData = [
 var QuoteView = Backbone.View.extend({
   initialize: function(options) {
     this.stock = options.stock;
-    // this.template = options.template;
+    this.template = options.template;
   },
 
   render: function() {
@@ -72,7 +72,7 @@ var QuoteView = Backbone.View.extend({
 });
 
 $(document).ready(function() {
-  // var quoteTemplate = _.template($('#tmpl-quote-view').html);
+  var quoteTemplate = _.template($('#tmpl-quote-view').html());
   var stockQuoteElement = $('.quotes');
   var stockList = [];
   stockData.forEach(function(quotePrice){
