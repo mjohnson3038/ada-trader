@@ -23,31 +23,31 @@ import Backbone from 'backbone';
 var stockData = [
   {
     symbol: "Humor",
-    price: 8850
+    price: 88.50
   }, {
     symbol: "Cloth",
-    price: 8170
+    price: 81.70
   }, {
     symbol: "Habit",
-    price: 9800
+    price: 98.00
   }, {
     symbol: "Super",
-    price: 8310
+    price: 83.10
   }, {
     symbol: "Ingrd",
-    price: 7940
+    price: 79.40
   }, {
     symbol: "Mxtpe",
-    price: 10920
+    price: 109.20
   }, {
     symbol: "Cntar",
-    price: 9070
+    price: 90.70
   }, {
     symbol: "Evclr",
-    price: 10190
+    price: 101.90
   }, {
     symbol: "Fuzzy",
-    price: 8860
+    price: 88.60
   }
 ];
 
@@ -59,7 +59,7 @@ var QuoteView = Backbone.View.extend({
 
   render: function() {
     // var html = this.template({stock: this.stock});
-    var html = '<li class="single-quote">';
+    var html = '<li class="quote">';
     html += '<h2>' + this.stock.symbol + '</h2>';
     html += '<p>' + this.stock.price + '</p>';
     html += '</li>';
